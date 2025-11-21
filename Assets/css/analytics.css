@@ -1,0 +1,14 @@
+/* Combined CSS */
+
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: #c1f0e3;
+}
