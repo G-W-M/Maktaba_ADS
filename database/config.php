@@ -1,9 +1,9 @@
 <?php
 // Database connection configuration
 $host = 'localhost';  
-$port = 3306;          
+$port = 3307;          
 $user = 'root';
-$pass = 'maria';     
+$pass = 'mariadb';     
 $dbname = 'maktaba';  
 
 // Create connection

@@ -39,14 +39,14 @@ $user_full_name = $user_data['full_name'] ?? '';
 $user_phone = $user_data['phone'] ?? '';
 
 // Function to record payment
-function recordPayment($order_id, $user_id, $amount, $payment_method, $status = 'Completed', $mpesa_phone = null, $mpesa_transaction_id = null, $result_desc = null) {
+function recordPayment($order_id, $user_id, $amount, $payment_method, $status = 'Paid', $mpesa_phone = null, $mpesa_transaction_id = null, $result_desc = null) {
     global $conn;
     
     $stmt = $conn->prepare("
-        INSERT INTO payments (order_id, user_id, amount, payment_method, payment_status, mpesa_phone, mpesa_transaction_id, result_desc) 
+        INSERT INTO payments (order_id, amount, payment_method, payment_status, mpesa_phone, mpesa_transaction_id, result_desc) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ");
-    $stmt->bind_param("iidsssss", $order_id, $user_id, $amount, $payment_method, $status, $mpesa_phone, $mpesa_transaction_id, $result_desc);
+    $stmt->bind_param("idsssss", $order_id, $amount, $payment_method, $status, $mpesa_phone, $mpesa_transaction_id, $result_desc);
     $result = $stmt->execute();
     $stmt->close();
     
@@ -227,11 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-body">
                     <?php foreach ($_SESSION['cart'] as $book_id => $item): ?>
                         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                            <div class="d-flex align-items-center">
-                                <img src="../../assets/book_covers/<?php echo $item['cover_image'] ?? 'default.jpg'; ?>" 
-                                     alt="<?php echo htmlspecialchars($item['title']); ?>" 
-                                     class="rounded me-3 book-cover">
-                                <div>
+                    
                                     <h6 class="mb-1"><?php echo htmlspecialchars($item['title']); ?></h6>
                                     <small class="text-muted">Quantity: <?php echo $item['quantity']; ?></small>
                                     <br>

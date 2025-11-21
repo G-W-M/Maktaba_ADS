@@ -46,7 +46,7 @@ $res = $conn->query("
 while ($r = $res->fetch_assoc()) {
     $recent_orders[] = $r;
 }
-
+/*
 // --- Auto-create shipping reminder notification ---
 if ($counts['orders_pending'] > 0) {
     $reminder_message = "Shipping Reminder: " . $counts['orders_pending'] . " pending orders need to be processed";
@@ -66,6 +66,7 @@ if ($counts['orders_pending'] > 0) {
     }
     $check_stmt->close();
 }
+*/  
 ?>
 <!DOCTYPE html>
 <html lang="en">
